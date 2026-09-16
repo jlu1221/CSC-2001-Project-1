@@ -8,6 +8,8 @@ public class Session{
     private  String location;
     private  int maxParticipants;
     private  int currentParticipants = 0;
+
+    // Constructor
     public Session(int id,String t, String m, String d, String date, String time,String l, int max){
         this.sessionID = id;
         this.topic = t;
