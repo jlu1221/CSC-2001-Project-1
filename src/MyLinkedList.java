@@ -46,13 +46,42 @@ public class MyLinkedList {
         current.next = newNode;
     }
     // insertAfter method
+    // Purpose: this method adds an item to the existing session list and updates the list with the new sessions. Best use with sessionID
+    public void insertAfter(Session session) {
+        Node newNode = new Node();
+        newNode.session = session;
+
+        // beginning node
+        Node current = head;
+
+        // look for the session before the new one
+        while (current.next != null) {
+
+            if (current.session.getSessionID() == session.getSessionID() - 1) {
+                newNode.next = current.next;
+                current.next = newNode;
+                return;
+            }
+
+            current = current.next;
+        }
+    }
     // searchIByD method
     // search ByMentor method
     // remove method
     // registerParticipant method
 
     // display method
-    
+    // Purpose: display method prints at the list in output
+    public void display() {
+        Node current = head;
+
+        while (current != null) {
+            System.out.println(current.session);
+            current = current.next;
+        }
+    }
+
 
 
 }

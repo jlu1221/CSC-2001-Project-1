@@ -48,9 +48,19 @@ public class main {
                 28
         );
 
+        // Creates a new session List
         MyLinkedList list = new MyLinkedList();
 
         list.addFirst(session1);
         list.addLast(session2);
+        list.addLast(session4);
+
+        System.out.println("Before insert:");
+        list.display();
+
+        list.insertAfter(session3);
+
+        System.out.println("After insert:");
+        list.display();
     }
 }
