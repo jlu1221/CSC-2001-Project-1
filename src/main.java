@@ -48,9 +48,9 @@ public class main {
                 28
         );
 
-        sessions.addFirst(session1);
-        sessions.addFirst(session2);
-        sessions.addFirst(session3);
-    sessions.addFirst(session4);
+        MyLinkedList list = new MyLinkedList();
+
+        list.addFirst(session1);
+        list.addLast(session2);
     }
 }
