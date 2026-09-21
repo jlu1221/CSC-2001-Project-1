@@ -62,5 +62,46 @@ public class main {
 
         System.out.println("After insert:");
         list.display();
+
+        System.out.println("\nSearching for Session 2:");
+        System.out.println(list.searchByID(101));
+
+        System.out.println("\nSearching for Session 99:");
+        System.out.println(list.searchByID(99));
+
+        System.out.println("\nSearching by mentor:");
+        System.out.println(list.searchByMentor("Alex"));
+
+        System.out.println("\nSearching for nonexistent mentor:");
+        System.out.println(list.searchByMentor("josh"));
+
+        System.out.println("\nBefore removing:");
+        list.display();
+
+        System.out.println("\nRemoving Session 2:");
+        System.out.println(list.remove(session2));
+
+        System.out.println("\nAfter removing:");
+        list.display();
+
+        System.out.println("\nRegistering participant:");
+        System.out.println(list.registerParticipant(session3));
+
+        System.out.println("Current participants: "
+                + session1.getCurrentParticipants());
+
+        Session smallSession = new Session(
+                10,
+                "Small Session",
+                "Professor Brown",
+                "Computer Science",
+                "10/01/2026",
+                "1:00 PM",
+                "Room 100",
+                1
+        );
+
+        System.out.println(list.registerParticipant(smallSession));
+        System.out.println(list.registerParticipant(smallSession));
     }
 }
