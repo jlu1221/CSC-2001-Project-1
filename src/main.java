@@ -2,7 +2,7 @@ public class main {
 
     public static void main(String[] args) {
 
-        MyLinkedList sessions = new MyLinkedList();
+        MyLinkedList session = new MyLinkedList();
 
         Session session1 = new Session(
                 101,
@@ -51,57 +51,125 @@ public class main {
         // Creates a new session List
         MyLinkedList list = new MyLinkedList();
 
+        // Testing methods
+
+        // addFirst method
+        System.out.println("Test addFirst:");
+        System.out.println("_______________________________");
+
         list.addFirst(session1);
+
+        System.out.println("List after: ");
+        System.out.println("_______________________________");
+        list.display();
+        System.out.println("_______________________________");
+
+        // addLast method
+        System.out.println("Test addLast: ");
+        System.out.println("_______________________________");
+
         list.addLast(session2);
         list.addLast(session4);
 
-        System.out.println("Before insert:");
+        System.out.println("List after: ");
+        System.out.println("_______________________________");
         list.display();
+        System.out.println("_______________________________");
+
+        //insertAfter method
+        System.out.println("Test insertAfter: ");
+        System.out.println("_______________________________");
 
         list.insertAfter(session3);
 
-        System.out.println("After insert:");
+        System.out.println("Inserted session3: ");
+        System.out.println("_______________________________");
         list.display();
+        System.out.println("_______________________________");
 
-        System.out.println("\nSearching for Session 2:");
+        // searchByID method
+        System.out.println("Test searchById: ");
+        System.out.println("_______________________________");
+
+        System.out.println("Search for Session 102:");
+        System.out.println("_______________________________");
+        System.out.println(list.searchByID(102));
+        System.out.println("_______________________________");
+
+        System.out.println("Search for Session 101");
+        System.out.println("_______________________________");
         System.out.println(list.searchByID(101));
 
-        System.out.println("\nSearching for Session 99:");
+        System.out.println("Search for non-existent Session");
+        System.out.println("_______________________________");
         System.out.println(list.searchByID(99));
+        System.out.println("_______________________________");
 
-        System.out.println("\nSearching by mentor:");
-        System.out.println(list.searchByMentor("Alex"));
+        // searchByMentor method
+        System.out.println("Test searchByMentor: ");
+        System.out.println("_______________________________");
 
-        System.out.println("\nSearching for nonexistent mentor:");
-        System.out.println(list.searchByMentor("josh"));
+        System.out.println("Search for Mentor: Katie");
+        System.out.println("_______________________________");
+        System.out.println(list.searchByMentor("Katie"));
 
-        System.out.println("\nBefore removing:");
+        System.out.println("Search for Mentor: Joanna");
+        System.out.println("_______________________________");
+        System.out.println(list.searchByMentor("Joanna"));
+
+        System.out.println("Search for Non-existent mentor: Josh");
+        System.out.println("_______________________________");
+        System.out.println(list.searchByMentor("Josh"));
+        System.out.println("_______________________________");
+
+        // remove method
+        System.out.println("Test remove:");
+        System.out.println("_______________________________");
+
+        System.out.println("Before removing Session 2");
+        System.out.println("_______________________________");
         list.display();
+        System.out.println("_______________________________");
+        System.out.println("removed: " + list.remove(session2));
+        System.out.println("_______________________________");
 
-        System.out.println("\nRemoving Session 2:");
-        System.out.println(list.remove(session2));
-
-        System.out.println("\nAfter removing:");
+        System.out.println("After removing");
+        System.out.println("_______________________________");
         list.display();
+        System.out.println("_______________________________");
 
-        System.out.println("\nRegistering participant:");
-        System.out.println(list.registerParticipant(session3));
+        // registerParticipants
+        System.out.println("Test registerParticipants: ");
+        System.out.println("_______________________________");
 
-        System.out.println("Current participants: "
-                + session1.getCurrentParticipants());
+        System.out.println("Registering participant for Session 101:");
+        System.out.println("_______________________________");
 
+        boolean registered = list.registerParticipant(session1);
+
+        if (registered) {
+            System.out.println("Participant registered");
+        } else {
+            System.out.println("Registration failed");
+        }
+
+        System.out.println("Current participants: " + session1.getCurrentParticipants());
+        System.out.println("_______________________________");
+        System.out.println("Check for max > current: ");
+        System.out.println("_______________________________");
         Session smallSession = new Session(
                 10,
                 "Small Session",
-                "Professor Brown",
+                "Professor Einakian",
                 "Computer Science",
-                "10/01/2026",
-                "1:00 PM",
-                "Room 100",
+                "9/13/26",
+                "12:00 PM",
+                "Room 333",
                 1
         );
 
         System.out.println(list.registerParticipant(smallSession));
         System.out.println(list.registerParticipant(smallSession));
+        System.out.println("_______________________________");
     }
 }

@@ -93,7 +93,7 @@ public class MyLinkedList {
             current = current.next;
         }
 
-        return "No session found for mentor" +  name;
+        return "No session found for mentor" + name;
     }
     // remove method
     // Purpose: this method will remove one of the session and return a string
