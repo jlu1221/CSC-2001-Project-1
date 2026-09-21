@@ -1,6 +1,6 @@
 public class MyLinkedList {
 
-    // Node class
+    // Node class (head is the beginning of the list)
     private Node head;
 
     private class Node {
@@ -8,13 +8,15 @@ public class MyLinkedList {
         Node next;
     }
 
-    // Constructor
+    // Constructor (start with a empty list)
     public MyLinkedList() {
         head = null;
     }
 
     // addFirst method
-    // Purpose: add a session to the beginning of the linkedlist,
+    // Purpose: add a session to the beginning of the linkedlist
+    // Example: session1 --> [session1]
+
     public void addFirst(Session session) {
         Node newNode = new Node();
         newNode.session = session;
@@ -23,6 +25,7 @@ public class MyLinkedList {
     }
     // addLast method
     // Purpose: add a session to the end of the list, always checking if the next node is null
+    // Example: session 2 and 4 --> [session1, session2, session4] {added 2 and 4}
 
     public void addLast(Session session) {
         Node newNode = new Node();
@@ -47,6 +50,8 @@ public class MyLinkedList {
     }
     // insertAfter method
     // Purpose: this method adds an item to the existing session list and updates the list with the new sessions. Best use with sessionID
+    // Example: session3 --> [session1, session2, session3, session4] {inserted session3}
+
     public void insertAfter(Session session) {
         Node newNode = new Node();
         newNode.session = session;
@@ -68,6 +73,8 @@ public class MyLinkedList {
     }
     // searchByID method
     // Purpose: this method search for the ID given by the user and return the string ID
+    // Example: ID:101 --> sessionID: 101
+
     public String searchByID(int id) {
         Node current = head;
 
@@ -82,6 +89,8 @@ public class MyLinkedList {
     }
     // search ByMentor method
     // Purpose: this method search for the given mentor given by the user and return the string of the mentor's name
+    // Example: Mentor name: Jordan --> Session Mentor: Jordan
+    
     public String searchByMentor(String name) {
         Node current = head;
 
@@ -97,6 +106,8 @@ public class MyLinkedList {
     }
     // remove method
     // Purpose: this method will remove one of the session and return a string
+    // Example: session3 --> [session1, session2, session4] {session 3 was removed}
+
     public String remove(Session session) {
         // If the list is empty
         if (head == null) {
@@ -125,7 +136,9 @@ public class MyLinkedList {
         return "Session not found";
     }
     // registerParticipant method
-    // Purpose: this method check if the current number of participants is less than the max amount, then add that participant (add 10
+    // Purpose: this method check if the current number of participants is less than the max amount, then add that participant (add 1)
+    // Example: session102 max capacity = 15; current = 5; 5 < 15 (TRUE); can register a participant; current = 5 + 1 {6}
+
     public boolean registerParticipant(Session session) {
 
         if (session.getCurrentParticipants() < session.getMaxParticipants()) {
@@ -140,6 +153,8 @@ public class MyLinkedList {
 
     // display method
     // Purpose: display method prints at the list in output
+    // Example: Display the print statement when running main
+
     public void display() {
         Node current = head;
 
@@ -148,7 +163,4 @@ public class MyLinkedList {
             current = current.next;
         }
     }
-
-
-
 }
