@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.time.temporal.Temporal;
 import java.util.List;
 public class MainGUI extends JFrame {
     private JTextField idField;
@@ -11,10 +12,14 @@ public class MainGUI extends JFrame {
     private JTextField locationField;
     private JTextField maxField;
     private JTextArea outputArea;
-    // TODO: Create instance variable with type linked list
+
+    // instance variable
+    private MyLinkedList list;
 
     public MainGUI() {
-        // TODO: Create a new LinkList
+
+        // new LinkedList
+        list = new MyLinkedList();
         setTitle("Employee Mentorship and Inclusion Manager");
         setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,57 +105,109 @@ public class MainGUI extends JFrame {
         try {
             int id = Integer.parseInt(idField.getText());
             int max = Integer.parseInt(maxField.getText());
-            /* TODO: Create Session object and based on id call:
-               - addFirst, or
-               - addLast, or
-               - insertAfter
-            */
-            
-            
+
+            String topic = titleField.getText();
+            String mentor = mentorField.getText();
+            String department = departmentField.getText();
+            String date = dateField.getText();
+            String time = timeField.getText();
+            String location = locationField.getText();
+
+            Session session = new Session(
+                    id,
+                    topic,
+                    mentor,
+                    department,
+                    date,
+                    time,
+                    location,
+                    max
+            );
+
+            if (id < 200) {
+                list.addFirst(session);
+            } else if (id < 500) {
+                list.insertAfter(session);
+            } else {
+                list.addLast(session);
+            }
+
             outputArea.setText("Session Added Successfully\n");
-            // Clear the input fields
             clearFields();
-        }
-        catch(Exception e) {
+
+        } catch(Exception e) {
             outputArea.setText("Invalid input");
         }
     }
     
     // Display the information in the outputArea in GUI
     private void displaySessions() {
-        /* TODO: Print the sessions information in the
-                  outputArea
-        */
-        outputArea.setText("");
+        outputArea.setText(list.display());
 
     }
 
     // Search based on sessionID or mentor if the fields are not empty
     private void searchSession() {
-        /* TODO: 1) Search by sessionID, if field is empty,
-         print Session not found, in outputArea.
-        2) Search by mentor if the Mentor field is empty,
-         print No session found for mentor (mentor name) in outputArea
-        3) If both sessionID and mentor are empty,
-        print Please enter a Session ID or Mentor name in outputArea
-        */
-        
+        String idText = idField.getText();
+        String mentor = mentorField.getText();
+
+        if (!idText.isEmpty()) {
+            try {
+                int id = Integer.parseInt(idText);
+                outputArea.setText(list.searchByID(id));
+            } catch (Exception e) {
+                outputArea.setText("Session not found");
+            }
+
+        } else if (!mentor.isEmpty()) {
+            outputArea.setText(list.searchByMentor(mentor));
+
+        } else {
+            outputArea.setText("Please enter a Session ID or Mentor name");
+        }
     }
     
     // delete the session
     private void removeSession() {
-    	/* TODO: if session exits remove the session and print Session removed,
-    	otherwise print Session not found in outputArea
-    	*/
-        
+        try {
+            int id = Integer.parseInt(idField.getText());
+
+            Session session = list.getSessionByID(id);
+
+            if (session == null) {
+                outputArea.setText("Session not found");
+            } else {
+                outputArea.setText(list.remove(session));
+            }
+
+        } catch (Exception e) {
+            outputArea.setText("Session not found");
+        }
     }
 
     // registerParticipants call the method in the LinkedList
     private void registerParticipant() {
-        /* TODO: It must call the registerParticipant() method of the LinkedList,
-        if result is True: print in outputArea, "Participant registered"
-        otherwise print, "Registration failed"
-        */
+        try {
+            int id = Integer.parseInt(idField.getText());
+
+            Session session = list.getSessionByID(id);
+
+            if (session == null) {
+                outputArea.setText("Registration failed");
+                return;
+            }
+
+            boolean registered = list.registerParticipant(session);
+
+            if (registered) {
+                outputArea.setText("Participant registered");
+            } else {
+                outputArea.setText("Registration failed");
+            }
+
+        } catch (Exception e) {
+            outputArea.setText("Registration failed");
+        }
     }
 
     public static void main(String[] args) {

@@ -61,7 +61,7 @@ public class main {
 
         System.out.println("List after: ");
         System.out.println("_______________________________");
-        list.display();
+        System.out.println(list.display());
         System.out.println("_______________________________");
 
         // addLast method
@@ -73,7 +73,7 @@ public class main {
 
         System.out.println("List after: ");
         System.out.println("_______________________________");
-        list.display();
+        System.out.println(list.display());
         System.out.println("_______________________________");
 
         //insertAfter method
@@ -84,7 +84,7 @@ public class main {
 
         System.out.println("Inserted session3: ");
         System.out.println("_______________________________");
-        list.display();
+        System.out.println(list.display());
         System.out.println("_______________________________");
 
         // searchByID method
@@ -128,14 +128,14 @@ public class main {
 
         System.out.println("Before removing Session 2");
         System.out.println("_______________________________");
-        list.display();
+        System.out.println(list.display());
         System.out.println("_______________________________");
         System.out.println("removed: " + list.remove(session2));
         System.out.println("_______________________________");
 
         System.out.println("After removing");
         System.out.println("_______________________________");
-        list.display();
+        System.out.println(list.display());
         System.out.println("_______________________________");
 
         // registerParticipants

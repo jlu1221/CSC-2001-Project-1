@@ -56,20 +56,15 @@ public class MyLinkedList {
         Node newNode = new Node();
         newNode.session = session;
 
-        // beginning node
         Node current = head;
 
-        // look for the session before the new one
-        while (current.next != null) {
-
-            if (current.session.getSessionID() == session.getSessionID() - 1) {
-                newNode.next = current.next;
-                current.next = newNode;
-                return;
-            }
-
-            current = current.next;
+        if (head == null) {
+            head = newNode;
+            return;
         }
+
+        newNode.next = current.next;
+        current.next = newNode;
     }
     // searchByID method
     // Purpose: this method search for the ID given by the user and return the string ID
@@ -85,12 +80,12 @@ public class MyLinkedList {
 
             current = current.next;
         }
-        return "session not found";
+        return "Session not found";
     }
     // search ByMentor method
     // Purpose: this method search for the given mentor given by the user and return the string of the mentor's name
     // Example: Mentor name: Jordan --> Session Mentor: Jordan
-    
+
     public String searchByMentor(String name) {
         Node current = head;
 
@@ -102,7 +97,7 @@ public class MyLinkedList {
             current = current.next;
         }
 
-        return "No session found for mentor" + name;
+        return "No session found for mentor " + name;
     }
     // remove method
     // Purpose: this method will remove one of the session and return a string
@@ -111,7 +106,7 @@ public class MyLinkedList {
     public String remove(Session session) {
         // If the list is empty
         if (head == null) {
-            return "session not found";
+            return "Session not found";
         }
 
         // If the session to remove is the first node
@@ -155,12 +150,29 @@ public class MyLinkedList {
     // Purpose: display method prints at the list in output
     // Example: Display the print statement when running main
 
-    public void display() {
+    public String display() {
+        String result = "";
         Node current = head;
 
         while (current != null) {
-            System.out.println(current.session);
+            result += current.session + "\n";
             current = current.next;
         }
+
+        return result;
+    }
+
+    public Session getSessionByID(int id) {
+        Node current = head;
+
+        while (current != null) {
+            if (current.session.getSessionID() == id) {
+                return current.session;
+            }
+
+            current = current.next;
+        }
+
+        return null;
     }
 }
