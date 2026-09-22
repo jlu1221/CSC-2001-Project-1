@@ -124,7 +124,9 @@ public class MainGUI extends JFrame {
                     max
             );
 
-            if (id < 200) {
+            if (list.display().isEmpty()) {
+                list.addFirst(session);
+            } else if (id < 200) {
                 list.addFirst(session);
             } else if (id < 500) {
                 list.insertAfter(session);
@@ -132,10 +134,10 @@ public class MainGUI extends JFrame {
                 list.addLast(session);
             }
 
-            outputArea.setText("Session Added Successfully\n");
+            outputArea.setText("Session Added Successfully");
             clearFields();
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             outputArea.setText("Invalid input");
         }
     }
